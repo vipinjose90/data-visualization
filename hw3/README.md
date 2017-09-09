@@ -5,10 +5,8 @@ In this assignment you will make the charts developed for Homework 1 interactive
 
 ## Implementation
 
-We have provided boilerplate code in [hw3.html](hw3.html) and in [script.js](script.js). 
-You are encouraged to build on your own charts that you submitted for homework 1 (copy the corresponding parts of ``hw1.html`` into the appropriate SVG tags in ``hw3.html``). You can also use our reference solution of Homework 1.
-
-As in Homework 1, add your name, your e-mail address, and your uID to the HTML elements at the top. Also make sure your submission is a valid HTML5 file. Check that it is valid by uploading it to the [W3C HTML Validator](https://validator.w3.org/#validate_by_upload).
+We have provided boilerplate code in [hw3.html](hw3.html), which you'll recognize from HW1, and in [script.js](script.js). 
+Add your name, your e-mail address, and your uID to the HTML elements at the top. Also make sure your submission is a valid HTML5 file. Check that it is valid by uploading it to the [W3C HTML Validator](https://validator.w3.org/#validate_by_upload).
 
 Your project structure should look like this:
 
