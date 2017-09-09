@@ -7,23 +7,23 @@ As in Homework 1, add your name, your e-mail address, and your UID to the HTML e
 
 Your project structure looks like this:
 
-    hw2/
-        README.md
-        hw2.html
-        js/
-        	Node.js
-        	Tree.js
-        	script.js
-        data/
-          Tree.json
+	hw2/
+		README.md
+		hw2.html
+		js/
+			Node.js
+			Tree.js
+			script.js
+		data/
+		  Tree.json
 
 Remember, to be able to access the data files with JavaScript, you will need to be *serving* the hw2 directory, not just opening the HTML file in a browser. If your development environment doesn't already launch a server for you, you can start one with one of these commands:
 
-    $ cd path/to/hw2
-    # for python 2
-    $ python -m SimpleHTTPServer 8080
-    # for python 3
-    $ python -m http.server 8080
+	$ cd path/to/hw2
+	# for python 2
+	$ python -m SimpleHTTPServer 8080
+	# for python 3
+	$ python -m http.server 8080
 
 You can view the page at [http://localhost:8080](http://localhost:8080).
 
@@ -60,7 +60,7 @@ The source data from which to construct the tree lives in the `data/Tree.json` f
 
 Notice that the constructor of this class takes in two parameters: the name of the node as a string, and the name of the parent, also as a string.
 
-``` JS
+```JS
 constructor(nodeName, parentName) {
 
 	//String of Node Name
@@ -70,24 +70,24 @@ constructor(nodeName, parentName) {
 	this.parentName = parentName;
 
 	/**
-     * Reference to parent Node Object.
-     */
+	 * Reference to parent Node Object.
+	 */
 	this.parentNode = null;
 
 	/**
-     * Array of Children.
-     */
+	 * Array of Children.
+	 */
 	this.children=[];
 
 	/**
-     * Level of the node.
-     */
+	 * Level of the node.
+	 */
 	this.level=null;
 
 	/**
-     * Position of the node.
-     * Initialize to -1
-     */
+	 * Position of the node.
+	 * Initialize to -1
+	 */
 	this.position=-1;
 }
 
@@ -111,7 +111,7 @@ Our tree class will only need to have one attribute: a list (represented by an a
 
 Let's start by filling out the constructor of the Tree class, which takes in an array of JSON objects.
 
-``` JS
+```JS
 /**
  * Creates a Tree Object
  * parentNode, children, parentName, level, position
@@ -126,7 +126,7 @@ Add code that will create this list of `Node` objects based on the input. This i
 
 The next step is to complete the `buildTree()` function.
 
-``` JS
+```JS
 /**
  * Function that builds a tree from a list of nodes with parent refs
  */
