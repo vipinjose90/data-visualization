@@ -68,7 +68,7 @@ And you can view the page at [http://localhost:8080](http://localhost:8080)
 
 There are two versions to this homework: a HACKER VERSION and a regular version. 
 
-In the **regular version**, we load the complete data structure for the table from the `fifa-matches.json` file and store it in the global `teamData` variable. We recommend that even if you plan on doing the hacker version, that you start with the front-end first and hence use the JSON.
+In the **regular version**, we load the complete data structure for the table from the `fifa-matches.json` file. We recommend that even if you plan on doing the hacker version, that you start with the front-end first and hence use the JSON.
 
 In the **HACKER VERSION**, we load the data from a csv file `fifa-matches.csv` and you will have to create the data structure yourself, and store it in `teamData`. 
 
@@ -150,7 +150,7 @@ The next step is creating an x axis underneath the goals column header. Notice t
  
 ### Create list to populate table. 
 
-Recall from earlier how our table will be composed of two types of rows. Aggregate rows that contain summary values for all games, and game specific rows that contain information for a given match. In order to facilitate the process of populating this table, we will be keeping an updated list of all data elements we want to display in the table in the global variable `tableElements`. As a first step, just copy  the `teamData` list over to the `tableElements`. 
+Recall from earlier how our table will be composed of two types of rows. Aggregate rows that contain summary values for all games, and game specific rows that contain information for a given match. In order to facilitate the process of populating this table, we will be keeping an updated list of all data elements we want to display in the table in the global variable `tableElements`. As a first step, just copy  the `teamData` list over to the `tableElements`. Notice that you will have to use .slice() to create a copy, because in javascript, the = operator creates a new reference to the same data! This means that if you simply say a = b in javascript, it creates a reference to b, and any changes in b are reflected in a! We don't want that. 
 
 We are now ready to populate the table with aggregate rows! 
 
@@ -243,6 +243,8 @@ There are three cases you have to deal with:
 1. If a team was clicked, and the next element in the list is also a team, add its games to the list following the team's entry. 
 2. If a game was clicked, do nothing. 
 3. If a team was clicked, and the next element in the list is a game, it means that the team's games are already expanded and we want to remove them! Remove the games associated with the clicked game. 
+
+Use the .splice() operator to both insert and remove rows from the table. 
 
 Once the list is updated, we can call `updateTable()` and watch the magic happen!
 
