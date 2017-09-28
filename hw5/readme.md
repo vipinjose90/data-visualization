@@ -1,4 +1,4 @@
-#CS-5630 / CS-6630 Homework 5
+# CS-5630 / CS-6630 Homework 5
 *Due: Friday, October 13, 11:59 pm.* 
 
 In this assignment you will explore game statistics from the last Fifa World Cup in 2014. To this end, you will create an interactive table and a tree layout that are linked to each other. 
