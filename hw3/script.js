@@ -101,6 +101,8 @@ function update(error, data) {
         return aScale(d.a);
     })
 
+
+
     aBars
         .enter().append("rect")
         .style("opacity", 0)
