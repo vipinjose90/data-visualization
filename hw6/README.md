@@ -76,6 +76,10 @@ Columns associated with each party are prefixed with `D_`, `R_`, or `I_`, respec
 
 We have loaded the initial winner file, but you will take care of data loading and parsing the yearly files when required. 
 
+Here is a sample year as seen in the console.
+
+![Overview](figs/year_Timeline_sample.png)
+
 ## Part I: Year Chart
 
 The year chart visualizes the year and the winning party of all presidential elections since 1940.
@@ -89,7 +93,7 @@ Each year is represented as a circle that is assigned a color according to the p
 
 Below the circles for each year, add a text element that displays the value of this year. You can assign the class `.yearText` to style this element.
 
-On selection (click) of a circle, trigger an event that populates the electoral votes chart, vote percentage chart and tile chart with the right data. This is done by making a call to the update methods of these visualizations. Based on the year that is selected, you should load the appropriate ``year_timeline_XXX.csv`` file and populate the data. We have also created a global color scale  `colorScale` based on the margin of victory for Republican and Democrat parties, to be used consistently across all your visualizations. You will be sending both, the data and the color scale as parameters to the update methods of appropriate charts.
+On selection (click) of a circle, trigger a function call that populates the electoral votes chart, vote percentage chart and tile chart with the right data. This is done by making a call to the update methods of these visualizations. Based on the year that is selected, you should load the appropriate ``year_timeline_XXX.csv`` file and populate the data. We have also created a color scale  `colorScale` based on the margin of victory for Republican and Democrat parties, to be used consistently across all your visualizations. You will be sending both, the data and the color scale as parameters to the update methods of appropriate charts.
 
 When you're done with this part, your year chart should look like this: 
 ![yearChart](figs/yearChart.png)
@@ -99,11 +103,11 @@ When you're done with this part, your year chart should look like this:
 
 Initialize the chart in the `electoralVoteChart.js` file in the ``constructor`` method, modeled after the `constructor` method in ``yearChart.js``. 
 
-In Part I you should have implemented an event so that the ``update`` method for this chart is triggered with a selection in the year chart and it receives the data corresponding to the year selected. 
+In Part I you should have implemented a function so that the ``update`` method for this chart is triggered with a selection in the year chart and it receives the data corresponding to the year selected. 
 
 In the ``update`` method, create a stacked bar chart where each bar represents single state. Unlike the bar charts that you have used before, this will have constant values for the *y* attribute and *height* and the appropriate scale is applied to the *x* attribute and *width*. 
 
-The bars that you create here are sized according to the number of electoral votes for a given state which is given by the attribute `Total_EV` in the data, and colored and positioned according to the margin of victory for the different parties; you can find the data in the column `RD_Difference`. Positive values indicate that the Republican party won, negative values indicate that the Democrats won. When and Independent candidate wins, this attribute does not have a value. To style your bars, you can use the predefined class `.electoralVotes`. Sort your bars such that, the state with the highest democratic victory should be dark-blue and be positioned at the far left; the state with the highest republican victory should be dark-red and be positioned at the far right. Place independent states on the left, and use a uniform green to represent them. To color code the bars corresponding to the Democrats and Republicans, you can make use of the global color scale provided.
+The bars that you create here are sized according to the number of electoral votes for a given state which is given by the attribute `Total_EV` in the data, and colored and positioned according to the margin of victory for the different parties; you can find the data in the column `RD_Difference`. Positive values indicate that the Republican party won, negative values indicate that the Democrats won. When and Independent candidate wins, this attribute does not have a value. To style your bars, you can use the predefined class `.electoralVotes`. Sort your bars such that, the state with the highest democratic victory should be dark-blue and be positioned at the far left; the state with the highest republican victory should be dark-red and be positioned at the far right. Place independent states on the left, and use a uniform green to represent them. To color code the bars corresponding to the Democrats and Republicans, you can make use of the color scale provided.
 
 As you can see in the screenshot below, there are multiple other minor details that need to be displayed. Append a marker at the center of the bar chart which will be a reference for *50%* mark. Right above this, you will display the number of electoral votes that are required to with the elections. In the same line, you should display the count of total electoral votes for each party on top of the corresponding group of bars.  All these elements should be placed according to the layout in the screenshot below. The text elements can be styled using `.electoralVoteText` class that is given to you in the `.css` file. Whenever any detail specific to certain party to be displayed, you can make use of the `chooseClass` method to color your elements appropriately.
 
@@ -130,10 +134,10 @@ Next, we'll implement a cartogram that also communicates the winning percentage 
  
 Again, initialize the chart. 
 
-How do we lay these tiles out? Assume that you are given a matrix. where each cell corresponds to a tile. Some tiles are filled in (the states), others are not (i.e., remain white). To position a tile, you require its row and column information within this matrix. Within your data, there are attributes named `row` and `column` for each state. Taken together, these row and column values define the layout. 
+How do we lay these tiles out? Assume that you are given a matrix. where each cell corresponds to a tile. Some tiles are filled in (the states), others are not (i.e., remain white). To position a tile, you require its row and column information within this matrix. Within your data, there are attributes named `row` and `space` (use for column value) for each state. Taken together, these row and column values define the layout. 
 There are 8 rows and 12 columns in this matrix. Using this information, you should be able to find the values of height and width that each tile can take. Once you have these values, you can position the tile using the row and column information to drive the *x* and *y* attribute values. You can use `.tile` class to style your tiles.
 
-Color-code the tiles by win percentage using the global `colorScale`, and display the abbreviation of the state and the number of its electoral votes. The text elements in this chart can be styled using the `.tilestext` class and combine this with the `chooseClass` method to color your text wherever necessary.
+Color-code the tiles by win percentage (encoded in the  `RD_Difference` attribute) using the global `colorScale`, and display the abbreviation of the state and the number of its electoral votes. The text elements in this chart can be styled using the `.tilestext` class and combine this with the `chooseClass` method to color your text wherever necessary.
 
 To easily visualize the color code for these tiles, a legend proves to be useful. Hence, we need to have a legend associated with the tile chart. We have given most of the code for a legend that works with a quantile scale. All you need to do is to place this appropriately and make a call to this element so that it is displayed.
 

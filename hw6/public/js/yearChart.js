@@ -63,7 +63,7 @@ class YearChart {
         //Color range for global color scale
         let range = ["#063e78", "#08519c", "#3182bd", "#6baed6", "#9ecae1", "#c6dbef", "#fcbba1", "#fc9272", "#fb6a4a", "#de2d26", "#a50f15", "#860308"];
 
-        //Global colorScale be used consistently by all the charts
+        //ColorScale be used consistently by all the charts
         this.colorScale = d3.scaleQuantile()
             .domain(domain)
             .range(range);
