@@ -29,12 +29,12 @@ We have provided boilerplate code that you should use to develop your solution. 
 
 As in previous homeworks, add your name, your e-mail address, and your UID to the HTML elements at the top. Also make sure your submission is a valid HTML5 file. Check that it is valid by uploading it to the [W3C HTML Validator](https://validator.w3.org/#validate_by_upload).
 
-Other than adding your name, etc., you shouldn't need to edit hw5.html in this assignment (though you are free to optimize positioning, etc.)
+Other than adding your name, etc., you shouldn't need to edit hw6.html in this assignment (though you are free to optimize positioning, etc.)
 
 Your project structure looks like this:
 
-    hw5/
-        hw5.html
+    hw6/
+        hw6.html
             public/
                 css/
                    style.css
