@@ -22,12 +22,10 @@ class TileChart {
                             .attr("width",this.svgWidth)
                             .attr("height",legendHeight)
                             .attr("transform", "translate(" + this.margin.left + ",0)")
-                            .style("bgcolor","green")
         this.svg = divTiles.append("svg")
                             .attr("width",this.svgWidth)
                             .attr("height",this.svgHeight)
                             .attr("transform", "translate(" + this.margin.left + ",0)")
-                            .style("bgcolor","green")
     };
 
     /**
@@ -87,10 +85,10 @@ class TileChart {
             //Creates a legend element and assigns a scale that needs to be visualized
             this.legendSvg.append("g")
                 .attr("class", "legendQuantile")
-                .attr("transform", "translate(125,50)");
+                .attr("transform", "translate(0,50)");
 
             let legendQuantile = d3.legendColor()
-                .shapeWidth(120)
+                .shapeWidth(100)
                 .cells(10)
                 .orient('horizontal')
                 .scale(colorScale);
