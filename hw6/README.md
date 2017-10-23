@@ -160,7 +160,7 @@ In D3, a brush is an interactive area where clicking and dragging of the mouse i
 You can create a brush with the code below. The brush takes a D3 scale as function for converting the range of a selection in the visualization space into a range of the data space. You should use the same scale for this brush as you used for drawing the axis and drawing your visual encoding. The `.on()` function takes a function as a parameter that is called when a brush `end` event happens. Here a function called `brushed` is called each time the brush selection is done:
 
 ```javascript
-var brush = d3.brushX().extent([<minX>,<minY>],[<maxX>,<maxY>]).on("end", brushed);
+var brush = d3.brushX().extent([[<minX>,<minY>],[<maxX>,<maxY>]]).on("end", brushed);
 ```
 The values that you give in the exent will be the bounds for the chart on which you are visualizing. Next, 
 a brush is added using the following command. 
