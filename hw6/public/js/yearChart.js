@@ -10,12 +10,13 @@ class YearChart {
      * @param electionInfo instance of ElectionInfo
      * @param electionWinners data corresponding to the winning parties over mutiple election years
      */
-    constructor (electoralVoteChart, tileChart, votePercentageChart, electionWinners) {
+    constructor (electoralVoteChart, tileChart, votePercentageChart,shiftChart, electionWinners) {
 
         //Creating YearChart instance
         this.electoralVoteChart = electoralVoteChart;
         this.tileChart = tileChart;
         this.votePercentageChart = votePercentageChart;
+        this.shiftChart = shiftChart;
         // the data
         this.electionWinners = electionWinners;
         
@@ -74,6 +75,73 @@ class YearChart {
     //The circles should be colored based on the winning party for that year
     //HINT: Use the .yearChart class to style your circle elements
     //HINT: Use the chooseClass method to choose the color corresponding to the winning party.
+        let thisClass = this
+
+        let circleSpacing = this.svgWidth/this.electionWinners.length-1;
+
+        this.svg
+            .append("line")
+            .attr("x1",15)
+            .attr("x2",thisClass.svgWidth)
+            .attr("y1",thisClass.svgHeight/2 -10)
+            .attr("y2",thisClass.svgHeight/2 -10)
+            .attr("stroke", "grey")
+            .attr("stroke-dasharray","1, 1")
+
+
+        let circles =
+            this.svg
+                .selectAll("circle")
+                .data(this.electionWinners)
+                .enter()
+                .append("circle")
+                .attr("cx",function (d,i) {
+                    return i*circleSpacing + 40
+
+                })
+                .attr("cy",function (d,i) {
+                    return thisClass.svgHeight/2 -10
+                })
+                .attr("r",7)
+                .attr("class",
+                    function(d){
+                        return thisClass.chooseClass(d.PARTY)
+                    })
+                .on("mouseenter", function (d) {
+                    d3.select(this).classed("highlighted",true)
+                })
+                .on("mouseleave", function (d) {
+                    d3.select(this).classed("highlighted",false)
+                })
+                .on("click", function (d) {
+                    d3.select(".selected").classed("selected",false)
+                    d3.select(this).classed("selected",true)
+                    d3.csv("data/Year_Timeline_"+d.YEAR+".csv", function (error, electionResult) {
+                        electoralVoteChart.update(electionResult,thisClass.colorScale)
+                        votePercentageChart.update(electionResult)
+                        tileChart.update(electionResult,thisClass.colorScale)
+
+                    });
+                })
+
+
+        this.svg
+            .selectAll("text")
+            .data(this.electionWinners)
+            .enter()
+            .append("text")
+            .attr("x",function (d,i) {
+                return i*circleSpacing + 40
+
+            })
+            .attr("y",function (d,i) {
+                return thisClass.svgHeight/2 +10
+            })
+            .classed("yearText",true)
+            .text(function (d) {
+                return d.YEAR
+            })
+
 
     //Append text information of each year right below the corresponding circle
     //HINT: Use .yeartext class to style your text elements
@@ -94,6 +162,20 @@ class YearChart {
     //Implement a call back method to handle the brush end event.
     //Call the update method of shiftChart and pass the data corresponding to brush selection.
     //HINT: Use the .brush class to style the brush.
+
+        let brush = d3.brushX().extent([[0,48],[this.svgWidth,this.s]]).on("end", function () {
+            let cumSum = 0
+            let currentSelection = d3.event.selection
+            let brushArray = []
+            thisClass.electionWinners.forEach(function (d,i) {
+                if(i*circleSpacing + 40 >= currentSelection[0] && i*circleSpacing + 40 <= currentSelection[1]){
+                    brushArray.push(d)
+                }
+            })
+            thisClass.shiftChart.update(null,brushArray)
+        });
+        //Implement a call back method to handle the brush end event.
+        this.svg.append("g").attr("class", "brush").call(brush);
 
     };
 
